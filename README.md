@@ -1,24 +1,15 @@
-# video
+# VR 视频播放器
 
-## Project setup
-```
-npm install
-```
+VR 视频播放器适对框架不做限制，支持任何框架，因为次插件是使用原生开发的
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 环境搭建
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- 安装依赖 `npm install`
+- 运行开发 `npm run serve`
+- 生成插件 `npm run lib`
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 文档说明
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    加紧更新中...,如果需要快速使用，直接下载下来，运行源码，
+    就可以看到源码里的方法属性等，也可以根据实际项目修改源码，
+    生成适合自己项目的插件
