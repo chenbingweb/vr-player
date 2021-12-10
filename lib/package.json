@@ -1,0 +1,15 @@
+{
+  "name": "vr-video",
+  "version": "1.0.1",
+  "description": "vr视频播放",
+  "main": "video/vr-video.umd.js",
+  "keywords": [
+    "vr",
+    "3d",
+    "video",
+    "视频播放"
+  ],
+  "private": false,
+  "author": "chenbing",
+  "license": "ISC"
+}
