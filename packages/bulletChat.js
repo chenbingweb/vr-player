@@ -24,7 +24,7 @@ export default class BulletChat {
     this.requestAnimation = null;
     this.bulletChatDiv = null;
     this.nextTime = new Date().getTime();
-    this.textArr = ["hello", "您哈"];
+    this.textArr = [];
 
     this.textDomArr = [];
     this.init();

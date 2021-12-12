@@ -100,7 +100,11 @@ export default class Player {
 
   setSrc(src, type = "vr") {
     const video = this.video;
-
+    video.currentTime = 0;
+    this.loadingBar.style.width = "0px"; // loading 进程
+    this.playerProcessBar.style.width = "0px"; // 播放进度
+    this.timeShow.innerText = "00:00:00/00:00:00"; // 播放时间
+    this.playIcon.style = playIconPlayStyle;
     video.setAttribute("crossOrigin", "Anonymous");
     this.video.src = src;
     this.object3D.createVidoBox(video, type);
@@ -113,6 +117,13 @@ export default class Player {
     this.video.addEventListener(
       "timeupdate",
       function (e) {
+        if (
+          that.object3D.ontimeupdate &&
+          typeof that.object3D.ontimeupdate === "function"
+        ) {
+          that.object3D.ontimeupdate && that.object3D.ontimeupdate(e);
+        }
+
         that.loading.hide();
         const duration = Math.ceil(this.duration);
         var timeDisplay;
@@ -132,7 +143,14 @@ export default class Player {
     );
     this.video.addEventListener(
       "play",
-      () => {
+      (e) => {
+        if (
+          this.object3D.onplay &&
+          typeof this.object3D.onplay === "function"
+        ) {
+          this.object3D.onplay && this.object3D.onplay(e);
+        }
+
         this.playIcon.style = playIconPauseStyle;
       },
       false

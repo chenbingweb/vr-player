@@ -14,6 +14,7 @@ function initConfig() {
     autoplay: true,
     playType: "VR", // 默认为VR播放
     bgColor: "#0000000", //0xaaaaaa
+    useBulletChat: false,
   };
 }
 
@@ -117,7 +118,7 @@ export default class VideoVr {
     const that = this;
 
     return function inner() {
-      if (that.bulletChat) {
+      if (that.bulletChat && that.configer.useBulletChat) {
         that.bulletChat.createAnimate();
       }
 
@@ -219,5 +220,9 @@ export default class VideoVr {
       },
       false
     );
+  }
+  // 设置视频播放地址
+  setSrc(src, type = "vr") {
+    this.videoPlayer.setSrc(src, type);
   }
 }
