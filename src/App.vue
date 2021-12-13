@@ -7,6 +7,9 @@
       <button @click="onPlayVideo(vsrc2, 'v')">视频一</button>
       <button @click="onPlayVideo(vsrc, 'vr')">视频二</button>
       <button @click="addBulletText">添加弹幕</button>
+      <button @click="onDoPlay">播放▶️</button>
+      <button @click="onPause">暂停⏸</button>
+      <button @click="onDoPlaySrc">播放▶️一个连接</button>
     </div>
   </div>
 </template>
@@ -27,10 +30,26 @@ export default {
     };
   },
   mounted() {
-    this.videoVr = new VideoVr(this.$refs.video_box);
-    this.videoVr.setSrc(require("./assets/source/20201217-233451-465-02.mp4"));
+    this.videoVr = new VideoVr(this.$refs.video_box, {
+      useBulletChat: true,
+    });
+    this.videoVr.setSrc(require("./assets/source/12.mp4"));
+    this.videoVr.setDefaultBulletText(["哈哈", "😄😄😄😄", "🚀🚀🚀🚀🚀🚀🚀"]);
   },
   methods: {
+    onDoPlaySrc() {
+      this.videoVr.play(
+        "https://dpv.videocc.net/e785b2c81c/5/e785b2c81c9e018296671a1287e99615_1.mp4?pid=1638953239258X1503332",
+        "V"
+      );
+    },
+    onDoPlay() {
+      this.videoVr.play();
+    },
+
+    onPause() {
+      this.videoVr.pause();
+    },
     onPlayVideo(url, ty) {
       this.videoVr.setSrc(url, ty);
     },

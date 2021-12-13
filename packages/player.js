@@ -157,7 +157,13 @@ export default class Player {
     );
     this.video.addEventListener(
       "pause",
-      () => {
+      (e) => {
+        if (
+          this.object3D.onpause &&
+          typeof this.object3D.onpause === "function"
+        ) {
+          this.object3D.onpause && this.object3D.onpause(e);
+        }
         console.log("视频暂停播放");
         this.playIcon.style = playIconPlayStyle;
       },
@@ -165,7 +171,13 @@ export default class Player {
     );
     this.video.addEventListener(
       "ended",
-      () => {
+      (e) => {
+        if (
+          this.object3D.onended &&
+          typeof this.object3D.onended === "function"
+        ) {
+          this.object3D.onended && this.object3D.onended(e);
+        }
         console.log("视频播放结束");
         this.playIcon.style = playIconPlayStyle;
       },

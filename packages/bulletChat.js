@@ -9,17 +9,16 @@ const styleCss = {
     `,
 };
 
-function configer() {
+function defaultConfiger() {
   return {
     row: 5,
-    speed: 0.3,
     colors: ["#4f4cc3", "yellow", "#4cc350", "#dd8120", "#ffffff"],
   };
 }
 
 export default class BulletChat {
-  constructor(container) {
-    this.configer = Object.assign({}, configer());
+  constructor(container, configer) {
+    this.configer = Object.assign({}, defaultConfiger(), configer);
     this.container = container;
     this.requestAnimation = null;
     this.bulletChatDiv = null;
@@ -29,11 +28,13 @@ export default class BulletChat {
     this.textDomArr = [];
     this.init();
   }
+  setDefaultBulletText(val) {
+    this.textArr = val;
+    this.createMatr(this.textArr, this.configer.row);
+  }
   init() {
     this.createBulletChatContainer();
     this.createAnimate();
-
-    this.createMatr(this.textArr, this.configer.row);
   }
   // 创建弹幕容器
   createBulletChatContainer() {
@@ -42,6 +43,7 @@ export default class BulletChat {
     this.bulletChatDiv.style = styleCss.bulletChatDivStyle;
     this.container.appendChild(this.bulletChatDiv);
   }
+
   //添加弹幕文字
   addBulletText(text) {
     let topPer = this.randomIndex(10, 25);
@@ -117,7 +119,7 @@ export default class BulletChat {
         topPer = this.randomIndex(10, 24);
       }
       top += (index % row) * topPer;
-      let right = this.randomIndex(-10, -100);
+      let right = Math.min(-400, -item.length * 24);
       if (obj[index % row]) {
         right += obj[index % row];
       }

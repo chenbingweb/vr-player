@@ -15,13 +15,18 @@ function initConfig() {
     playType: "VR", // 默认为VR播放
     bgColor: "#0000000", //0xaaaaaa
     useBulletChat: false,
+    bulletChatRow: 5, // 弹幕默认行数
+    bulletChatColors: ["#4f4cc3", "yellow", "#4cc350", "#dd8120", "#ffffff"], // 大幕默认颜色列表
   };
 }
 
 export default class VideoVr {
   constructor(container, config) {
-    this.bulletChat = new BulletChat(container);
     this.configer = Object.assign({}, initConfig(), config);
+    this.bulletChat = new BulletChat(container, {
+      row: this.configer.bulletChatRow,
+      colors: this.configer.bulletChatColors,
+    });
     this.playType = this.configer.playType;
 
     this.container = container;
@@ -224,5 +229,21 @@ export default class VideoVr {
   // 设置视频播放地址
   setSrc(src, type = "vr") {
     this.videoPlayer.setSrc(src, type);
+  }
+  // 设置默认弹幕数据
+  setDefaultBulletText(textArray) {
+    this.bulletChat.setDefaultBulletText(textArray);
+  }
+  // 视频播放
+  play(src = "", type = "vr") {
+    console.log(src);
+    if (src) {
+      this.videoPlayer.setSrc(src, type);
+    }
+    this.videoPlayer.video.play();
+  }
+  // 视频暂停
+  pause() {
+    this.videoPlayer.video.pause();
   }
 }
