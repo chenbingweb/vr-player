@@ -197,11 +197,17 @@ export function createVoice(video, dom) {
     const voiceBar = document.querySelector("div.voiceBar");
     if (video.muted) {
       video.muted = false;
-      voiceBar.style.width = "100%";
+      if (voiceBar) {
+        voiceBar.style.width = "100%";
+      }
+
       voiceIcon.style = voiceOpenStyle;
     } else {
       video.muted = true;
-      voiceBar.style.width = 0;
+      if (voiceBar) {
+        voiceBar.style.width = 0;
+      }
+
       voiceIcon.style = voiceCloseStyle;
     }
   };

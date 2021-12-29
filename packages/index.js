@@ -17,6 +17,7 @@ function initConfig() {
     useBulletChat: false,
     bulletChatRow: 5, // 弹幕默认行数
     bulletChatColors: ["#4f4cc3", "yellow", "#4cc350", "#dd8120", "#ffffff"], // 大幕默认颜色列表
+    showTotalVideoTime: false, // 显示视频总时长
   };
 }
 

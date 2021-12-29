@@ -103,7 +103,9 @@ export default class Player {
     video.currentTime = 0;
     this.loadingBar.style.width = "0px"; // loading 进程
     this.playerProcessBar.style.width = "0px"; // 播放进度
-    this.timeShow.innerText = "00:00:00/00:00:00"; // 播放时间
+    this.timeShow.innerText = this.object3D.configer.showTotalVideoTime
+      ? "00:00:00/00:00:00"
+      : "00:00:00"; // 播放时间
     this.playIcon.style = playIconPlayStyle;
     video.setAttribute("crossOrigin", "Anonymous");
     this.video.src = src;
@@ -263,7 +265,9 @@ export default class Player {
     playIcon.style = playIconPlayStyle;
     controlBox.append(leftDivbox);
     this.timeShow = document.createElement("div");
-    this.timeShow.innerText = "00:00:00/00:00:00";
+    this.timeShow.innerText = this.object3D.configer.showTotalVideoTime
+      ? "00:00:00/00:00:00"
+      : "00:00:00";
 
     this.timeShow.setAttribute(
       "style",
@@ -310,6 +314,9 @@ export default class Player {
       minutes: playminutes,
       seconds: playseconds,
     } = timeChange(timeDisplay * 1000);
-    this.timeShow.innerText = `${playhours}:${playminutes}:${playseconds}/${hours}:${minutes}:${seconds}`;
+    // object3D.configer.showTotalVideoTime? "00:00:00/00:00:00":"00:00:00"
+    this.timeShow.innerText = this.object3D.configer.showTotalVideoTime
+      ? `${playhours}:${playminutes}:${playseconds}/${hours}:${minutes}:${seconds}`
+      : `${playhours}:${playminutes}:${playseconds}`;
   }
 }
