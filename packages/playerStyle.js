@@ -320,7 +320,7 @@ export function createVoiceBar(video, dom) {
 let fullFlag = false;
 let originStyle = "position:relative;overflow:hidden;";
 // 全屏 和取消全屏
-export function fullScrean(dom, container) {
+export function fullScrean(dom, container, cb) {
   const fullScrean = document.createElement("div");
   fullScrean.setAttribute("data-name", "fullScrean");
   fullScrean.style = fullScreanStyle;
@@ -335,5 +335,10 @@ export function fullScrean(dom, container) {
       container.style = originStyle;
       fullScrean.style = fullScreanStyle;
     }
+    setTimeout(() => {
+      if (cb && typeof cb == "function") {
+        cb();
+      }
+    });
   };
 }

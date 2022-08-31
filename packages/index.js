@@ -35,9 +35,10 @@ export default class VideoVr {
     this.clock = new THREE.Clock();
     CameraControls.install({ THREE: THREE });
     this.videoPlayer = new Player(this.container, this);
-
+    this.videoPlayer.screanChange = this.screanChange;
     this.init();
   }
+  screanChange() {}
   get playTypeName() {
     return this.playType;
   }
@@ -159,7 +160,7 @@ export default class VideoVr {
     }
     if (type === "vr") {
       this.skyBox = new THREE.Mesh(
-        new THREE.SphereBufferGeometry(30, 32, 32, 0, Math.PI * 2),
+        new THREE.SphereBufferGeometry(30, 60, 60, 0, Math.PI * 2),
         this.material
       );
       this.skyBox.position.set(0, 0, 0);

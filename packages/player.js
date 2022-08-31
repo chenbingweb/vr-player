@@ -39,6 +39,7 @@ export default class Player {
 
     this.video.muted = object3D.configer.muted;
     this.video.autoplay = object3D.configer.autoplay;
+    this.video.poster = object3D.configer.poster || "";
     this.video.setAttribute("x5-video-player-type", "h5");
     this.video.setAttribute("playsinline", true);
     this.video.setAttribute("webkit-playsinline", true);
@@ -302,7 +303,11 @@ export default class Player {
     createPlayerMagnification(this.video, rightDivBox);
     // vr 视频切换
     this.vrBoxBtn = changeVRAndVD(this.video, rightDivBox, this.object3D);
-    fullScrean(rightDivBox, this.object3D.container);
+    fullScrean(rightDivBox, this.object3D.container, () => {
+      if (this.screanChange) {
+        this.screanChange();
+      }
+    });
     controlBox.append(rightDivBox);
   }
   // 显示播放时间
